@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Поиск фото по номеру</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+    }
+    #photo {
+        max-width: 400px;
+        max-height: 400px;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+    <h1>Поиск фото по номеру</h1>
+    <p>Введите номер фото (1-5):</p>
+    <input type="number" id="photoNumber" min="1" max="5" value="1">
+    <button onclick="showPhoto()">Показать фото</button>
+    <div id="photoContainer">
+        <img id="photo" src="" alt="Фото">
+    </div>
+
+    <script>
+        function showPhoto() {
+            var photoNumber = document.getElementById('photoNumber').value;
+            var photoContainer = document.getElementById('photoContainer');
+            var photo = document.getElementById('photo');
+            var photoPath = getPhotoPath(photoNumber);
+
+            if (photoPath) {
+                photo.src = photoPath;
+                photoContainer.style.display = 'block';
+            } else {
+                alert('Фото с таким номером не найдено.');
+                photoContainer.style.display = 'none';
+            }
+        }
+
+        function getPhotoPath(number) {
+            var photoPaths = {
+                1: 'photos/photo1.jpg',
+                2: 'photos/photo2.jpg',
+                3: 'photos/photo3.jpg',
+                4: 'photos/photo1719750749.jpeg',
+                5: 'photos/photo5.jpg'
+            };
+
+            return photoPaths[number];
+        }
+    </script>
+</body>
+</html>
